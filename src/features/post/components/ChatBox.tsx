@@ -20,8 +20,9 @@ export const ChatBox = ({ onSubmit: onSubmitProp }: ChatBoxProps) => {
         type="text"
         onChange={(e) => setText(e.target.value)}
         value={text}
+        className="input text-xl"
       />
-      <Button onClick={() => onSubmit()} disabled={text.length === 0}>
+      <Button onClick={() => onSubmit()} disabled={text.length === 0} className="btn">
         Send
       </Button>
     </div>

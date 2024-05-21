@@ -75,7 +75,7 @@ export const SetupForm = ({
             <FormItem>
               <FormLabel>Display name</FormLabel>
               <FormControl>
-                <Input placeholder="John" {...field} />
+                <Input className="input" placeholder="John" {...field} />
               </FormControl>
               <FormDescription>3-10 Characters</FormDescription>
               <FormMessage />
@@ -89,6 +89,7 @@ export const SetupForm = ({
         <Button
           type="submit"
           disabled={submitDisabled || !form.formState.isValid}
+          className="btn"
         >
           Submit
         </Button>

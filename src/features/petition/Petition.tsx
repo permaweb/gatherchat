@@ -179,7 +179,7 @@ export default function Petition() {
         <textarea
           value={text}
           onChange={(e: any) => setText(e.target.value)}
-          className={"prompt-input"}
+          className="textarea"
         />
 
         <span>{`Current fee: ${feeAmount} ${feeAmount.toString() === "1" ? "token" : "tokens"}`}</span>
@@ -187,12 +187,12 @@ export default function Petition() {
           type={"number"}
           value={amount}
           onChange={(e: any) => setAmount(e.target.value)}
-          className={"amount-input"}
+          className="input"
         />
 
-        <div className={"submit-wrapper"}>
+        <div className={"submit-wrapper block pt-4"}>
           <button
-            className="submit"
+            className="btn w-full"
             onClick={handleSubmit}
             disabled={loading || amount <= 0 || amount < feeAmount}
           >

@@ -26,7 +26,7 @@ export const ProfileView = ({
           type="button"
           onClick={() => onClose()}
           variant={"ghost"}
-          className=" text-accent-foreground"
+          className="text-accent-foreground btn text-xs"
         >
           Close
         </Button>
@@ -45,6 +45,7 @@ export const ProfileView = ({
             type="button"
             onClick={() => onChangeFollow(otherPlayer)}
             variant={otherPlayer.isFollowedByUser ? "destructive" : "default"}
+            className="btn"
           >
             {otherPlayer.isFollowedByUser ? "Unfollow" : "Follow"}
           </Button>

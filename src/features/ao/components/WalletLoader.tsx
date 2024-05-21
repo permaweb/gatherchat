@@ -25,7 +25,7 @@ const WalletLoader = ({ children }: Props) => {
   if (window.arweaveWallet === undefined) {
     return (
       <div className="h-screen w-screen text-center flex flex-col justify-center">
-        <p className="text-xl">
+        <p className="text-3xl">
           Please install{" "}
           <a
             href="https://www.arconnect.io/download"
@@ -43,7 +43,7 @@ const WalletLoader = ({ children }: Props) => {
   if (arweaveId === undefined) {
     return (
       <div className="h-screen w-screen text-center flex flex-col justify-center">
-        <p className="text-xl">Please connect ArConnect</p>
+        <p className="text-3xl">Please connect ArConnect</p>
       </div>
     );
   }

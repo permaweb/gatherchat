@@ -24,12 +24,12 @@ export const SidePanel = ({
     <Tabs
       value={state}
       onValueChange={(value) => onSelectState(value as SidePanelState)}
-      className="flex flex-col items-center h-screen"
+      className="flex flex-col items-center h-screen mt-1"
     >
-      <TabsList className="flex w-[100%]">
-        <TabsTrigger value="petition">Petition</TabsTrigger>
-        <TabsTrigger value="feed">Activity Feed</TabsTrigger>
-        <TabsTrigger value="profile">Profile</TabsTrigger>
+      <TabsList className="flex gap-x-2 pt-4">
+        <TabsTrigger value="petition" className="btn text-base">Petition</TabsTrigger>
+        <TabsTrigger value="feed" className="btn text-base">Activity Feed</TabsTrigger>
+        <TabsTrigger value="profile" className="btn text-base">Profile</TabsTrigger>
         {/* <TabsTrigger value="video">Video</TabsTrigger> */}
       </TabsList>
       <div className="flex panel-wrapper">

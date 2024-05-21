@@ -70,7 +70,7 @@ function Index() {
               <span className="font-mono">3. </span>
               <Link
                 to="/game"
-                className={cn(buttonVariants({ variant: "default" }))}
+                className="btn"
               >
                 Play Gather Chat!
               </Link>

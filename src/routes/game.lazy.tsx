@@ -14,7 +14,7 @@ function Game() {
     <Suspense
       fallback={
         <div className="h-screen w-screen text-center flex flex-col justify-center">
-          <p className="text-xl">Loading...</p>
+          <p className="text-3xl">Loading...</p>
         </div>
       }
     >

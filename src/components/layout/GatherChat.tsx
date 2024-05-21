@@ -171,21 +171,23 @@ export const GatherChat = ({
         }}
       >
         <div ref={containerRef} className="h-screen relative">
-          <div className="absolute top-0 left-0 bg-red-100">
-            {/* World dropdown */}
-            <select
-              className=" text-xl px-2 py-1"
-              onChange={(e) => {
-                contractEvents.setWorldId(e.target.value);
-              }}
-              defaultValue={contractState.worldId}
-            >
-              {contractState.worldIndex.map((worldId) => (
-                <option key={worldId} value={worldId}>
-                  {worldId}
-                </option>
-              ))}
-            </select>
+          <div className="absolute top-2 left-2">
+            <div className="select">
+              {/* World dropdown */}
+              <select
+                className=" text-sm px-2 py-1"
+                onChange={(e) => {
+                  contractEvents.setWorldId(e.target.value);
+                }}
+                defaultValue={contractState.worldId}
+              >
+                {contractState.worldIndex.map((worldId) => (
+                  <option key={worldId} value={worldId}>
+                    {worldId}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <RenderEngine
             parentRef={containerRef}
@@ -224,7 +226,7 @@ export const GatherChat = ({
           onSelectState={setSidePanelState}
           activityFeed={
             <div className="min-h-min h-auto flex flex-col gap-4 py-4">
-              <ul className="w-[100%] min-h-0 max-h-full h-[calc(100vh-140px)] overflow-y-auto px-2">
+              <ul className="w-[100%] min-h-0 max-h-full h-[calc(100vh-180px)] overflow-y-auto px-2">
                 {Object.keys(contractState.posts).map((postId) => {
                   const post = contractState.posts[postId];
                   const selectedPlayer = [
@@ -238,12 +240,12 @@ export const GatherChat = ({
                   return (
                     <li
                       key={postId}
-                      className={`${
+                      className={`balloon ${
                         selectedPlayer?.isFollowedByUser ? "bg-blue-100" : ""
-                      } ${isUser ? "bg-gray-200" : ""} break-words max-w-sm`}
+                      } ${isUser ? "from-right" : "from-left"} break-words max-w-xs`}
                     >
                       <button
-                        className={"text-muted-foreground text-underline px-1"}
+                        className={"text-muted-foreground text-underline px-1 mb-2"}
                         type="button"
                         onClick={
                           isLink
@@ -269,7 +271,7 @@ export const GatherChat = ({
                           ({post.type})
                         </a>
                       )}
-                      <span className="text-muted-foreground text-xs">
+                      <span className="text-muted-foreground text-base block text-right">
                         {" "}
                         {timeAgo.format(post.created)}
                       </span>
