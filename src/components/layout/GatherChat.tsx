@@ -240,7 +240,7 @@ export const GatherChat = ({
                   return (
                     <li
                       key={postId}
-                      className={`balloon ${
+                      className={`balloon block w-full ${
                         selectedPlayer?.isFollowedByUser ? "bg-blue-100" : ""
                       } ${isUser ? "from-right" : "from-left"} break-words max-w-xs`}
                     >
