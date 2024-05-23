@@ -65,7 +65,7 @@ const setupInstance = (instance: CompositeTilemap, props: Props) => {
       );
     }
   }
-  
+
   // Draw window tiles
   for (let x = 2; x < roomSizeTiles.w - 2; x += windowSpacing) {
     for (let y = 0; y < 3; y++) {

@@ -80,7 +80,7 @@ export const GatherContractLoader = ({ children, initialWorldId }: Props) => {
     error: errorPosts,
     refetch: refetchPosts,
   } = useSuspenseQuery({
-    queryKey: ["posts", /* worldId */],
+    queryKey: ["posts" /* worldId */],
     queryFn: async () => {
       console.log("fetching posts");
       aoGather.ensureStarted();
@@ -108,7 +108,7 @@ export const GatherContractLoader = ({ children, initialWorldId }: Props) => {
   const events: GatherContactEvents = {
     setWorldId: async (worldId) => {
       setWorldId(worldId);
-      await aoGather.updateUser({ currentWorldId: worldId })
+      await aoGather.updateUser({ currentWorldId: worldId });
       await refetchUsers();
       // Will automatically refetch new world and posts, so no need to do this manually
     },

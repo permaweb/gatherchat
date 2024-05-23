@@ -8,12 +8,14 @@ interface Props extends React.ComponentProps<typeof AnimatedSprite> {
   seed: string;
   animationName: (typeof animationNames)[number];
   flipX?: boolean;
+  isLlama?: boolean;
 }
 
 export const Avatar = ({
   seed,
   animationName,
   flipX,
+  isLlama,
   ...animatedSpriteProps
 }: Props) => {
   const transform = useMemo(() => {
@@ -38,9 +40,14 @@ export const Avatar = ({
     console.log("Updating spritesheet");
     (async () => {
       // Define sprite layout
-      const spriteData = generateLlamaSpriteData(
-        `/api/sprite/generate/llama?seed=${seed}`,
-      );
+      let spriteData;
+      if (isLlama) {
+        spriteData = generateLlamaSpriteData(
+          `/api/sprite/generate/llama?seed=${seed}`,
+        );
+      } else {
+        spriteData = generateSpriteData(`/api/sprite/generate/?seed=${seed}`);
+      }
 
       // Create the SpriteSheet from data and image
       const spritesheet = new Spritesheet(

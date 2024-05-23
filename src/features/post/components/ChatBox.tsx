@@ -22,7 +22,11 @@ export const ChatBox = ({ onSubmit: onSubmitProp }: ChatBoxProps) => {
         value={text}
         className="input text-xl"
       />
-      <Button onClick={() => onSubmit()} disabled={text.length === 0} className="btn">
+      <Button
+        onClick={() => onSubmit()}
+        disabled={text.length === 0}
+        className="btn"
+      >
         Send
       </Button>
     </div>

@@ -55,5 +55,4 @@ describe.skip("AoGatherProvider", () => {
     const aoGatherProvider = getTestInstance();
     expect(aoGatherProvider.getPosts()).resolves.toMatchSnapshot();
   });
-
 });

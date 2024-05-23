@@ -2,11 +2,13 @@ import InteractableSprite from "@/features/render/components/InteractableSprite"
 import type { RenderEngineWorld } from "@/features/render/components/RenderEngine";
 import { TileLoader } from "@/features/render/components/TileLoader";
 import type { Bounds, Dimension, Position } from "@/features/render/lib/schema";
-import { GenericLayout, type GenericTileSet, tileSize } from "./components/GenericLayout";
+import {
+  GenericLayout,
+  type GenericTileSet,
+  tileSize,
+} from "./components/GenericLayout";
 
-const getCollisionFunction = (
-  roomSizeTiles: Dimension,
-) => {
+const getCollisionFunction = (roomSizeTiles: Dimension) => {
   const movementBounds: Bounds = {
     tl: {
       x: 1,
@@ -27,7 +29,7 @@ const getCollisionFunction = (
       y >= movementBounds.tl.y &&
       y <= movementBounds.br.y;
 
-    return !insideBounds // || clipsObstacle;
+    return !insideBounds; // || clipsObstacle;
   };
 };
 
@@ -43,7 +45,7 @@ export const createClubBeach = (
   onViewFeed: () => void,
 ): RenderEngineWorld => {
   return {
-    collision: getCollisionFunction(roomDimensions, /*obstacleLocations*/),
+    collision: getCollisionFunction(roomDimensions /*obstacleLocations*/),
     tileSet: (
       <TileLoader alias="clubbeach" src="assets/tiles/clubbeach.json">
         <GenericLayout
@@ -65,9 +67,6 @@ export const createClubBeach = (
         />
       </>
     ),
-    spritesFg: (
-      <>
-      </>
-    ),
+    spritesFg: <></>,
   };
 };

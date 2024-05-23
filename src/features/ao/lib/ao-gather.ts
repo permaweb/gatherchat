@@ -44,7 +44,7 @@ export type ContractWorld = {
   worldSize: {
     w: number;
     h: number;
-  }
+  };
   worldType: string;
   worldTheme: string;
   spawnPosition: ContractPosition;
@@ -70,9 +70,7 @@ export interface AoGather {
   getWorldIndex(): Promise<ContractWorldIndex>;
   getWorlds(): Promise<Record<ArweaveID, ContractWorld>>;
   getWorld(): Promise<ContractWorld>;
-  getPosts(params?: { dm?: string }): Promise<
-    Record<ArweaveID, ContractPost>
-  >; // queries contract for all connections associated with a user
+  getPosts(params?: { dm?: string }): Promise<Record<ArweaveID, ContractPost>>; // queries contract for all connections associated with a user
   register(params: ContractUserWritable): Promise<void>;
   updateUser(params: Partial<ContractUserWritable>): Promise<void>;
   updatePosition(params: {
@@ -181,7 +179,7 @@ export class AoGatherProvider extends AoProvider implements AoGather {
   async getWorld(): Promise<ContractWorld> {
     const { Messages } = await this.ao.dryrun({
       process: this.processId,
-      tags: [{ name: "Action", value: "GetWorld" }]
+      tags: [{ name: "Action", value: "GetWorld" }],
     });
     return JSON.parse(Messages[0].Data) as ContractWorld;
   }
@@ -189,9 +187,9 @@ export class AoGatherProvider extends AoProvider implements AoGather {
   async getPosts({
     dm,
   }: { dm?: string } = {}): Promise<Record<ArweaveID, ContractPost>> {
-    var params = [{ name: "Action", value: "GetPosts" }]
+    var params = [{ name: "Action", value: "GetPosts" }];
     if (dm) {
-      params.push({ name: "DM", value: dm })
+      params.push({ name: "DM", value: dm });
     }
     const { Messages } = await this.ao.dryrun({
       process: this.processId,

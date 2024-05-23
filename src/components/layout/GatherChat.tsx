@@ -140,24 +140,22 @@ export const GatherChat = ({
 
   const world = useMemo(
     () =>
-      (contractState.world.worldType as WorldType) === "clubbeach" ? (
-        createClubBeach(
-          contractState.world.worldTheme as GenericTileSet,
-          contractState.world.worldSize,
-          () => setSidePanelState("feed"),
-        )
-      ) : (
-        createDecoratedRoom(
-          contractState.world.worldTheme as RoomTileSet,
-          contractState.world.worldSize,
-          () => setSidePanelState("feed"),
-          3,
-          {
-            w: 4,
-            h: 4,
-          },
-        )
-      ),
+      (contractState.world.worldType as WorldType) === "clubbeach"
+        ? createClubBeach(
+            contractState.world.worldTheme as GenericTileSet,
+            contractState.world.worldSize,
+            () => setSidePanelState("feed"),
+          )
+        : createDecoratedRoom(
+            contractState.world.worldTheme as RoomTileSet,
+            contractState.world.worldSize,
+            () => setSidePanelState("feed"),
+            3,
+            {
+              w: 4,
+              h: 4,
+            },
+          ),
     [contractState.world],
   );
 
@@ -242,10 +240,14 @@ export const GatherChat = ({
                       key={postId}
                       className={`balloon block w-full ${
                         selectedPlayer?.isFollowedByUser ? "bg-blue-100" : ""
-                      } ${isUser ? "from-right" : "from-left"} break-words max-w-xs`}
+                      } ${
+                        isUser ? "from-right" : "from-left"
+                      } break-words max-w-xs`}
                     >
                       <button
-                        className={"text-muted-foreground text-underline px-1 mb-2"}
+                        className={
+                          "text-muted-foreground text-underline px-1 mb-2"
+                        }
                         type="button"
                         onClick={
                           isLink

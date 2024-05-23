@@ -63,6 +63,9 @@ export type RenderOtherPlayer = {
   // Transient
   isActivated: boolean;
   isTalking: boolean;
+
+  // NPC
+  isNPC: boolean;
 };
 
 export type RenderState = {
@@ -234,6 +237,10 @@ export const RenderEngine = ({
                                     otherPlayer.isInWorld
                                       ? []
                                       : [slightlyTransparent]
+                                  }
+                                  isLlama={
+                                    otherPlayer.isNPC ||
+                                    otherPlayer.id === "LlamaSecretary"
                                   }
                                   {...props}
                                 />

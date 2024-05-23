@@ -30,4 +30,10 @@ const segmentedTileBoxes: TileBox[] = [
   },
 ];
 
-export const generateLlamaFED = () => generate("./public/assets/tiles/llamaFED.json", meta, tileSize, segmentedTileBoxes);
+export const generateLlamaFED = () =>
+  generate(
+    "./public/assets/tiles/llamaFED.json",
+    meta,
+    tileSize,
+    segmentedTileBoxes,
+  );

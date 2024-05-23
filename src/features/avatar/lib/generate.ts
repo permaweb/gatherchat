@@ -28,7 +28,7 @@ export function buildGenerator(
     const srcCtx = srcCanvas.getContext("2d")!;
 
     srcCtx.drawImage(baseTex, 0, 0);
-    
+
     recalcVal(srcCtx, faceSelection, EYES_ORIGINS.length, 3, EYES_ORIGINS);
     recalcVal(srcCtx, headSelection, HEAD_ORIGINS.length, 0, HEAD_ORIGINS);
     recalcVal(srcCtx, headSelection, EYES_ORIGINS.length, 1, HEAD_ORIGINS);

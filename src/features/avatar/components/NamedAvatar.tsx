@@ -18,7 +18,7 @@ const NamedAvatar: React.FC<NamedAvatarProps> = ({ name, x, y, ...props }) => {
         y={-35}
         style={{
           fontSize: "1.8rem",
-          fontFamily: "Jersey 15"
+          fontFamily: "Jersey 15",
         }}
         // style={{
         // 	dropShadow: true,

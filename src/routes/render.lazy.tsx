@@ -6,7 +6,10 @@ import {
   ObstacleTypes,
   createDecoratedRoom,
 } from "@/features/worlds/DecoratedRoom";
-import { type GenericTileSet, GenericTileSets } from "@/features/worlds/components/GenericLayout";
+import {
+  type GenericTileSet,
+  GenericTileSets,
+} from "@/features/worlds/components/GenericLayout";
 import {
   type RoomTileSet,
   RoomTileSets,
@@ -31,7 +34,8 @@ function Render() {
 
   const [worldType, setWorldType] = useState<WorldType>("clubbeach");
 
-  const [genericTileSet, setGenericTileSet] = useState<GenericTileSet>("beach1");
+  const [genericTileSet, setGenericTileSet] =
+    useState<GenericTileSet>("beach1");
 
   const [roomTileSet, setRoomTileSet] = useState<RoomTileSet>("room_default");
   const [obstacleType, setObstacleType] = useState<ObstacleType>("tree");
@@ -76,11 +80,7 @@ function Render() {
         },
         () => {},
       ),
-    [
-      genericTileSet,
-      widthSlider,
-      heightSlider,
-    ],
+    [genericTileSet, widthSlider, heightSlider],
   );
 
   return (
@@ -124,94 +124,96 @@ function Render() {
           </select>
         </label>
         <br />
-        {
-          worldType === "decoratedRoom" ? (
-            <>
-              <label>
-                Tile Set:
-                <select
-                  value={roomTileSet}
-                  onChange={(e) => setRoomTileSet(e.target.value as RoomTileSet)}
-                >
-                  {RoomTileSets.map((set) => (
-                    <option key={set} value={set}>
-                      {set}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <br />
-              <label>
-                Obstacle Type:
-                <select
-                  value={obstacleType}
-                  onChange={(e) => setObstacleType(e.target.value as ObstacleType)}
-                >
-                  {ObstacleTypes.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-              </label>
-              <label>
-                Block Spacing Width:
-                <input
-                  type="range"
-                  min={2}
-                  max={10}
-                  value={blockSpacingWidthSlider}
-                  onChange={(e) =>
-                    setBlockSpacingWidthSlider(Number.parseInt(e.target.value))
-                  }
-                />
-                {blockSpacingWidthSlider}
-              </label>
-              <label>
-                Block Spacing Height:
-                <input
-                  type="range"
-                  min={2}
-                  max={10}
-                  value={blockSpacingHeightSlider}
-                  onChange={(e) =>
-                    setBlockSpacingHeightSlider(Number.parseInt(e.target.value))
-                  }
-                />
-                {blockSpacingHeightSlider}
-              </label>
-              <label>
-                Window Gap:
-                <input
-                  type="range"
-                  min={1}
-                  max={5}
-                  value={windowGapSlider}
-                  onChange={(e) =>
-                    setWindowGapSlider(Number.parseInt(e.target.value))
-                  }
-                />
-                {windowGapSlider}
-              </label>
-            </>
-          ) : (
-            <>
-              <label>
-                Tile Set:
-                <select
-                  value={genericTileSet}
-                  onChange={(e) => setGenericTileSet(e.target.value as GenericTileSet)}
-                >
-                  {GenericTileSets.map((set) => (
-                    <option key={set} value={set}>
-                      {set}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </>
-          )
-        }
+        {worldType === "decoratedRoom" ? (
+          <>
+            <label>
+              Tile Set:
+              <select
+                value={roomTileSet}
+                onChange={(e) => setRoomTileSet(e.target.value as RoomTileSet)}
+              >
+                {RoomTileSets.map((set) => (
+                  <option key={set} value={set}>
+                    {set}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <br />
+            <label>
+              Obstacle Type:
+              <select
+                value={obstacleType}
+                onChange={(e) =>
+                  setObstacleType(e.target.value as ObstacleType)
+                }
+              >
+                {ObstacleTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Block Spacing Width:
+              <input
+                type="range"
+                min={2}
+                max={10}
+                value={blockSpacingWidthSlider}
+                onChange={(e) =>
+                  setBlockSpacingWidthSlider(Number.parseInt(e.target.value))
+                }
+              />
+              {blockSpacingWidthSlider}
+            </label>
+            <label>
+              Block Spacing Height:
+              <input
+                type="range"
+                min={2}
+                max={10}
+                value={blockSpacingHeightSlider}
+                onChange={(e) =>
+                  setBlockSpacingHeightSlider(Number.parseInt(e.target.value))
+                }
+              />
+              {blockSpacingHeightSlider}
+            </label>
+            <label>
+              Window Gap:
+              <input
+                type="range"
+                min={1}
+                max={5}
+                value={windowGapSlider}
+                onChange={(e) =>
+                  setWindowGapSlider(Number.parseInt(e.target.value))
+                }
+              />
+              {windowGapSlider}
+            </label>
+          </>
+        ) : (
+          <>
+            <label>
+              Tile Set:
+              <select
+                value={genericTileSet}
+                onChange={(e) =>
+                  setGenericTileSet(e.target.value as GenericTileSet)
+                }
+              >
+                {GenericTileSets.map((set) => (
+                  <option key={set} value={set}>
+                    {set}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </>
+        )}
       </div>
       <div className="w-dvw h-dvh" ref={containerRef}>
         <RenderEngine
@@ -232,7 +234,8 @@ function Render() {
                   h: heightSlider,
                 },
                 worldType,
-                worldTheme: worldType === "decoratedRoom" ? roomTileSet : genericTileSet,
+                worldTheme:
+                  worldType === "decoratedRoom" ? roomTileSet : genericTileSet,
                 spawnPosition: {
                   x: 0,
                   y: 0,

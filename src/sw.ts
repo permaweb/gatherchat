@@ -34,7 +34,7 @@ async function cacheAssets(assets: string[]) {
 async function retrieveAssets(assets: string[]) {
   console.log(assets);
   const cache = await caches.open(assetsCacheName);
-  console.log("llama_ao: ", await caches.has(assets[0]))
+  console.log("llama_ao: ", await caches.has(assets[0]));
   console.log("parts: ", await caches.has(assets[1]));
   console.log(cache);
   const requests = assets.map((asset) => cache.match(asset)!);
@@ -48,12 +48,16 @@ async function responseToBitmap(response: Response) {
   return bitmap;
 }
 
-const assetPaths = ["assets/sprite/avatar/base.png", "assets/sprite/avatar/parts.png"]
-const llamaPaths = ["assets/sprite/avatar/llama_ao.png", 
-    "assets/sprite/avatar/llama_burgerKing.png",
-    "assets/sprite/avatar/llama_dumdum_v1.png",
-    "assets/sprite/avatar/llama_base_v1.png"]
-
+const assetPaths = [
+  "assets/sprite/avatar/base.png",
+  "assets/sprite/avatar/parts.png",
+];
+const llamaPaths = [
+  "assets/sprite/avatar/llama_ao.png",
+  "assets/sprite/avatar/llama_burgerKing.png",
+  "assets/sprite/avatar/llama_dumdum_v1.png",
+  "assets/sprite/avatar/llama_base_v1.png",
+];
 
 self.addEventListener("activate", (e) => {
   const event = e as ExtendableEvent;
@@ -78,14 +82,13 @@ self.addEventListener("fetch", (e) => {
 
       if (url.pathname.match(/^\/api\/sprite\/generate\/llama/)) {
         console.log("[Service Worker] Generating a llama sprite!");
-        
 
         const seed = url.searchParams.get("seed")!;
-        let x = BigInt('0x' + seed);
+        let x = BigInt("0x" + seed);
         const index = Number(x % BigInt(4));
         const assets = await retrieveAssets(llamaPaths);
         const baseTex = await responseToBitmap(assets[index]!);
-        const partTex = await responseToBitmap(assets[3-index]!); // unused
+        const partTex = await responseToBitmap(assets[3 - index]!); // unused
         const spriteBlob = await buildLlamaGenerator(baseTex, partTex)(seed);
 
         return new Response(spriteBlob, {
