@@ -30,4 +30,10 @@ const segmentedTileBoxes: TileBox[] = [
   },
 ];
 
-export const generateRoom3 = () => generate("./public/assets/tiles/room3.json", meta, tileSize, segmentedTileBoxes);
+export const generateRoom3 = () =>
+  generate(
+    "./public/assets/tiles/room3.json",
+    meta,
+    tileSize,
+    segmentedTileBoxes,
+  );

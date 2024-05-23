@@ -18,7 +18,7 @@ const tileSize = {
 const sectionSize = {
   x: 21,
   y: 19,
-}
+};
 
 const sectionNames = ["clubhouse1", "beach1"];
 
@@ -27,15 +27,16 @@ const floorSize = {
   y: 4,
 };
 
-const floorName = (xyStr: string) => ({
-  '0_0': 'default',
-  '0_1': 'wall',
-  '1_0': 'deepwater',
-  '1_1': 'walkable',
-})[xyStr];
+const floorName = (xyStr: string) =>
+  ({
+    "0_0": "default",
+    "0_1": "wall",
+    "1_0": "deepwater",
+    "1_1": "walkable",
+  })[xyStr];
 
-const floors: TileBox[] = sectionNames.flatMap((sectionName, s) => 
-  Array.from(Array(2).keys()).flatMap((x) => 
+const floors: TileBox[] = sectionNames.flatMap((sectionName, s) =>
+  Array.from(Array(2).keys()).flatMap((x) =>
     Array.from(Array(2).keys()).flatMap((y) => {
       const name = `${sectionName}_floor_${floorName(`${x}_${y}`)}`;
       const rect = {
@@ -45,8 +46,8 @@ const floors: TileBox[] = sectionNames.flatMap((sectionName, s) =>
         h: floorSize.y,
       };
       return { name, rect };
-    })
-  )
+    }),
+  ),
 );
 
 const couchesOffset = {
@@ -58,7 +59,7 @@ export const couchSize = {
   y: 2,
 };
 
-const couches: TileBox[] = sectionNames.flatMap((sectionName, s) => 
+const couches: TileBox[] = sectionNames.flatMap((sectionName, s) =>
   Array.from(Array(3).keys()).flatMap((y) => {
     const name = `${sectionName}_couch_${y}`;
     const rect = {
@@ -68,7 +69,7 @@ const couches: TileBox[] = sectionNames.flatMap((sectionName, s) =>
       h: couchSize.y,
     };
     return { name, rect };
-  })
+  }),
 );
 
 const rugsOffset = {
@@ -79,7 +80,7 @@ export const rugSize = {
   x: 3,
   y: 3,
 };
-const rugs: TileBox[] = sectionNames.flatMap((sectionName, s) => 
+const rugs: TileBox[] = sectionNames.flatMap((sectionName, s) =>
   Array.from(Array(3).keys()).flatMap((x) => {
     const name = `${sectionName}_rug_${x}`;
     const rect = {
@@ -89,7 +90,7 @@ const rugs: TileBox[] = sectionNames.flatMap((sectionName, s) =>
       h: rugSize.y,
     };
     return { name, rect };
-  })
+  }),
 );
 
 const segmentTileBoxes: TileBox[] = [
@@ -103,4 +104,11 @@ const blockFrameSets: TileBox[] = [
   // TODO: Plants, etc
 ];
 
-export const generateClubBeach = () => generate("./public/assets/tiles/clubbeach.json", meta, tileSize, segmentTileBoxes, blockFrameSets);
+export const generateClubBeach = () =>
+  generate(
+    "./public/assets/tiles/clubbeach.json",
+    meta,
+    tileSize,
+    segmentTileBoxes,
+    blockFrameSets,
+  );

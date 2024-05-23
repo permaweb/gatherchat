@@ -18,7 +18,7 @@ const SECRETARY = "_NaJSxuC_Zca_HcrKYc4E-dvteokk1iYm9INNhYuSOo";
 
 function getTagValue(
   list: { [key: string]: any }[],
-  name: string
+  name: string,
 ): string | null {
   for (let i = 0; i < list.length; i++) {
     if (list[i]) {
@@ -59,7 +59,7 @@ export default function Petition() {
             "SIGNATURE",
           ] as any);
           setWalletAddress(
-            await global.window.arweaveWallet.getActiveAddress()
+            await global.window.arweaveWallet.getActiveAddress(),
           );
         } catch (e: any) {
           console.error(e);
@@ -110,7 +110,7 @@ export default function Petition() {
             text: message.textOrTxId,
             type: message.author === walletAddress ? "sent" : "received",
             timestamp: message.created,
-          })
+          }),
         );
 
         fetchedMessages.sort((a, b) => a.timestamp - b.timestamp);
@@ -119,11 +119,11 @@ export default function Petition() {
           const existingIds = new Set(prevMessages.map((msg: any) => msg.id));
 
           const newMessages = fetchedMessages.filter(
-            (msg) => !existingIds.has(msg.id)
+            (msg) => !existingIds.has(msg.id),
           );
 
           return [...prevMessages, ...newMessages].sort(
-            (a, b) => a.timestamp - b.timestamp
+            (a, b) => a.timestamp - b.timestamp,
           );
         });
       }
@@ -179,26 +179,30 @@ export default function Petition() {
         <textarea
           value={text}
           onChange={(e: any) => setText(e.target.value)}
-          className={"prompt-input"}
+          className="textarea"
         />
 
-        <span>{`Current fee: ${feeAmount} ${feeAmount.toString() === "1" ? "token" : "tokens"}`}</span>
+        <span>{`Current fee: ${feeAmount} ${
+          feeAmount.toString() === "1" ? "token" : "tokens"
+        }`}</span>
         <input
           type={"number"}
           value={amount}
           onChange={(e: any) => setAmount(e.target.value)}
-          className={"amount-input"}
+          className="input"
         />
 
-        <div className={"submit-wrapper"}>
+        <div className={"submit-wrapper block pt-4"}>
           <button
-            className="submit"
+            className="btn w-full"
             onClick={handleSubmit}
             disabled={loading || amount <= 0 || amount < feeAmount}
           >
             {loading
               ? "Sending..."
-              : `Send ${amount} ${amount.toString() === "1" ? "token" : "tokens"}`}
+              : `Send ${amount} ${
+                  amount.toString() === "1" ? "token" : "tokens"
+                }`}
           </button>
         </div>
       </div>

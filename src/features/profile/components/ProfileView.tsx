@@ -15,6 +15,8 @@ export const ProfileView = ({
   onChangeFollow,
   onClose,
 }: ProfileViewProps) => {
+  console.log(`ProfileView: otherPlayer: ${JSON.stringify(otherPlayer)}`);
+
   return (
     <div className="space-y-4">
       <div className="flex flex-row gap-2 items-start justify-between">
@@ -26,7 +28,7 @@ export const ProfileView = ({
           type="button"
           onClick={() => onClose()}
           variant={"ghost"}
-          className=" text-accent-foreground"
+          className="text-accent-foreground btn text-xs"
         >
           Close
         </Button>
@@ -36,6 +38,11 @@ export const ProfileView = ({
         seed={otherPlayer.profile.avatar}
         animationName={"jump"}
         isPlaying={true}
+        isLlama={
+          otherPlayer.isNPC || otherPlayer.id === "LlamaSecretary"
+            ? true
+            : false
+        }
       />
       <p>In World: {otherPlayer.profile.currentWorldId}</p>
       <p>Last activity: {timeAgo.format(otherPlayer.profile.lastSeen)}</p>
@@ -45,6 +52,7 @@ export const ProfileView = ({
             type="button"
             onClick={() => onChangeFollow(otherPlayer)}
             variant={otherPlayer.isFollowedByUser ? "destructive" : "default"}
+            className="btn"
           >
             {otherPlayer.isFollowedByUser ? "Unfollow" : "Follow"}
           </Button>

@@ -57,8 +57,16 @@ export const CharacterCreator = ({
           animationName={"idle"}
           isPlaying={true}
         />
-        <Button type="button" size={"icon"} onClick={randomize}>
-          🎲
+        <Button
+          type="button"
+          onClick={randomize}
+          className="opacity-60 hover:opacity-100"
+        >
+          <img
+            src="./assets/dice.png"
+            alt="Gather Chat logo"
+            className="w-20"
+          />
         </Button>
       </div>
       <div>

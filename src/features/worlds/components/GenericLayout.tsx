@@ -34,9 +34,17 @@ const setupInstance = (instance: CompositeTilemap, props: Props) => {
     for (let y = -20; y < roomSizeTiles.h + 20; y++) {
       // Draw background tiles
       if (tileSet.startsWith("beach")) {
-        instance.tile(`${tileSet}_floor_walkable_1_1`, x * tileSizeBase.w, y * tileSizeBase.h);
+        instance.tile(
+          `${tileSet}_floor_walkable_1_1`,
+          x * tileSizeBase.w,
+          y * tileSizeBase.h,
+        );
       } else {
-        instance.tile(`${tileSet}_floor_walkable_1_1`, x * tileSizeBase.w, y * tileSizeBase.h);
+        instance.tile(
+          `${tileSet}_floor_walkable_1_1`,
+          x * tileSizeBase.w,
+          y * tileSizeBase.h,
+        );
       }
     }
   }
@@ -66,7 +74,7 @@ const setupInstance = (instance: CompositeTilemap, props: Props) => {
     if (y === roomSizeTiles.h - 1) {
       return { x: 1, y: 0 };
     }
-  }
+  };
 
   // Iterate over main area
   for (let x = 0; x < roomSizeTiles.w; x++) {
@@ -106,11 +114,11 @@ const setupInstance = (instance: CompositeTilemap, props: Props) => {
       y: couchAbsoluteOffset.y + couchRelativeOffset.y * n,
     };
     if (totalOffset.x >= roomSizeTiles.w - 2) break;
-      instance.tile(
-        `${tileSet}_couch_${n}`,
-        totalOffset.x * tileSizeBase.w,
-        totalOffset.y * tileSizeBase.h,
-      );
+    instance.tile(
+      `${tileSet}_couch_${n}`,
+      totalOffset.x * tileSizeBase.w,
+      totalOffset.y * tileSizeBase.h,
+    );
   }
 
   // Draw rugs
@@ -121,7 +129,11 @@ const setupInstance = (instance: CompositeTilemap, props: Props) => {
       x: rugAbsoluteOffset.x + rugRelativeOffset.x * n,
       y: rugAbsoluteOffset.y + rugRelativeOffset.y * n,
     };
-    if (totalOffset.x >= roomSizeTiles.w - 3 || totalOffset.y >= roomSizeTiles.h - 3) break;
+    if (
+      totalOffset.x >= roomSizeTiles.w - 3 ||
+      totalOffset.y >= roomSizeTiles.h - 3
+    )
+      break;
     instance.tile(
       `${tileSet}_rug_${n}`,
       totalOffset.x * tileSizeBase.w,
@@ -130,22 +142,25 @@ const setupInstance = (instance: CompositeTilemap, props: Props) => {
   }
 };
 
-export const GenericLayout = PixiComponent<Props, CompositeTilemap>("GenericLayout", {
-  create: (props: Props) => {
-    const instance = new CompositeTilemap();
+export const GenericLayout = PixiComponent<Props, CompositeTilemap>(
+  "GenericLayout",
+  {
+    create: (props: Props) => {
+      const instance = new CompositeTilemap();
 
-    setupInstance(instance, props);
+      setupInstance(instance, props);
 
-    return instance;
+      return instance;
+    },
+    // didMount: async (instance) => {},
+    applyProps: (instance, oldProps: Props, newProps: Props) => {
+      const { ...oldP } = oldProps;
+      const { ...newP } = newProps;
+
+      setupInstance(instance, newP);
+
+      // apply rest props to instance
+      applyDefaultProps(instance, oldP, newP);
+    },
   },
-  // didMount: async (instance) => {},
-  applyProps: (instance, oldProps: Props, newProps: Props) => {
-    const { ...oldP } = oldProps;
-    const { ...newP } = newProps;
-
-    setupInstance(instance, newP);
-
-    // apply rest props to instance
-    applyDefaultProps(instance, oldP, newP);
-  },
-});
+);

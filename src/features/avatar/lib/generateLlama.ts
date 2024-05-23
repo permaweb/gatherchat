@@ -7,7 +7,7 @@ export function buildLlamaGenerator(
   async function generate(seed: string) {
     console.log("generate fn");
     const selections = deserialize(seed);
-    
+
     // const faceSelection = selections[0];
     // const headSelection = selections[1];
     const colorSelections: ColorSelections = new Map([
@@ -127,10 +127,10 @@ export function buildLlamaGenerator(
   function recalcVal(
     ctx: OffscreenCanvasRenderingContext2D,
     selectionIndex: number,
-    t: number
+    t: number,
   ) {
-    console.log("recalcVal")
-    console.log(ctx, selectionIndex, t)
+    console.log("recalcVal");
+    console.log(ctx, selectionIndex, t);
     for (let y = 0; y < ORIGINS.length; y++) {
       const n = ORIGINS[y];
       for (let x = 0; x < n.length; x++) {
@@ -186,12 +186,7 @@ export function deserialize(e: string): number[] {
   return match.map((e) => Number.parseInt(e, 16));
 }
 
-const ORIGINS = [
-  [0],
-  [0, 1, 2, 1],
-  [-1, -2, 0, 1],
-  [-1, -1, -1, 1, 2, 1, 0],
-];
+const ORIGINS = [[0], [0, 1, 2, 1], [-1, -2, 0, 1], [-1, -1, -1, 1, 2, 1, 0]];
 
 // const srcCanvasWidth = 16 * 7;
 // const srcCanvasHeight = 24 * 4;

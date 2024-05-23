@@ -1,1 +1,1 @@
-export { default as Petition } from './Petition'
+export { default as Petition } from "./Petition";

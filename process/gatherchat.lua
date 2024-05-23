@@ -14,31 +14,32 @@ Users = Users or {
     status = "Bureaucratizing cyberspace!",
     currentWorldId = "LlamaFED",
     following = {},
+    isNPC = true,
   },
 }
 
 -- Key: World ID
 World = World or {
-    created = 1713833416559,
-    lastActivity = 1713833416559,
-    name = "LlamaFED",
-    description = "Home of the LLamaCoin Bureaucracy",
-    worldSize = {
-      w = 21,
-      h = 12,
+  created = 1713833416559,
+  lastActivity = 1713833416559,
+  name = "LlamaFED",
+  description = "Home of the LLamaCoin Bureaucracy",
+  worldSize = {
+    w = 21,
+    h = 12,
+  },
+  worldType = "clubbeach",
+  worldTheme = "beach1",
+  spawnPosition = {
+    x = 6,
+    y = 6,
+  },
+  playerPositions = {
+    LlamaSecretary = {
+      x = 3,
+      y = 1,
     },
-    worldType = "clubbeach",
-    worldTheme = "beach1",
-    spawnPosition = {
-      x = 6,
-      y = 6,
-    },
-    playerPositions = {
-      LlamaSecretary = {
-        x = 3,
-        y = 1,
-      },
-    }
+  }
 }
 
 -- Key: Message ID
@@ -48,10 +49,10 @@ Posts = Posts or {
     author = "Secretary of the Llama Board",
     worldId = "LlamaFED",
     type = "text",
-    textOrTxId = "Welcome to LlamaFED! This room hosts the expert LlamaCoin Bureaucracy. " .. 
-    "We are a group of Llamas working to make cyberspace a better place through sound, prudent, " ..
-    "and very serious LlamaCoin monetary policy. You may petition the Llama council in this room to " .. 
-    "print some new LlamaCoins for you, if you represent a worthy cause. Llama printer goes scREEEEEEEEE---",
+    textOrTxId = "Welcome to LlamaFED! This room hosts the expert LlamaCoin Bureaucracy. " ..
+        "We are a group of Llamas working to make cyberspace a better place through sound, prudent, " ..
+        "and very serious LlamaCoin monetary policy. You may petition the Llama council in this room to " ..
+        "print some new LlamaCoins for you, if you represent a worthy cause. Llama printer goes scREEEEEEEEE---",
   }
 }
 
@@ -67,7 +68,7 @@ Handlers.add(
   "GetWorldIndex",
   Handlers.utils.hasMatchingTag("Action", "GetWorldIndex"),
   function(msg)
-    ao.send({ Target = msg.From, Status = "OK", Data = json.encode({"LlamaFED"}) })
+    ao.send({ Target = msg.From, Status = "OK", Data = json.encode({ "LlamaFED" }) })
   end
 )
 

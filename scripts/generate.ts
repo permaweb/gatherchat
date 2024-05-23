@@ -14,7 +14,10 @@ type Frame = {
   pivot: { x: number; y: number };
 };
 
-function tileBoxToSegmentedFrames(tileSize: { w: number, h: number }, tileBox: TileBox): Record<string, Frame> {
+function tileBoxToSegmentedFrames(
+  tileSize: { w: number; h: number },
+  tileBox: TileBox,
+): Record<string, Frame> {
   const frameIndicies = {
     x: Array(tileBox.rect.w)
       .fill(0)
@@ -63,7 +66,10 @@ function tileBoxToSegmentedFrames(tileSize: { w: number, h: number }, tileBox: T
   return Object.assign({}, ...frames);
 }
 
-function frameGroupToBlockFrame(tileSize: { w: number, h: number }, tileBox: TileBox): Record<string, Frame> {
+function frameGroupToBlockFrame(
+  tileSize: { w: number; h: number },
+  tileBox: TileBox,
+): Record<string, Frame> {
   const name = tileBox.name;
   const globalOffset = {
     x: tileBox.rect.x,
@@ -100,20 +106,22 @@ function frameGroupToBlockFrame(tileSize: { w: number, h: number }, tileBox: Til
 export const generate = (
   fname: string,
   meta,
-  tileSize: { w: number, h: number },
+  tileSize: { w: number; h: number },
   segmentTileBoxes: TileBox[],
   blockTileBoxes: TileBox[] = [],
-) => fs.writeFileSync(
-  fname,
-  JSON.stringify(
-    {
-      meta,
-      frames: Object.assign({}, 
-        ...segmentTileBoxes.map((f) => tileBoxToSegmentedFrames(tileSize, f)), 
-        ...blockTileBoxes.map((f) => frameGroupToBlockFrame(tileSize, f)),
-      ),
-    },
-    null,
-    2,
-  ),
-);
+) =>
+  fs.writeFileSync(
+    fname,
+    JSON.stringify(
+      {
+        meta,
+        frames: Object.assign(
+          {},
+          ...segmentTileBoxes.map((f) => tileBoxToSegmentedFrames(tileSize, f)),
+          ...blockTileBoxes.map((f) => frameGroupToBlockFrame(tileSize, f)),
+        ),
+      },
+      null,
+      2,
+    ),
+  );

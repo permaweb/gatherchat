@@ -68,10 +68,7 @@ function Index() {
             </li>
             <li className="h-10 pl-2">
               <span className="font-mono">3. </span>
-              <Link
-                to="/game"
-                className={cn(buttonVariants({ variant: "default" }))}
-              >
+              <Link to="/game" className="btn">
                 Play Gather Chat!
               </Link>
             </li>
